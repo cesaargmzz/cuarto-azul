@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Cuarto Azul – Preparativos concierto</title>
+
+    <!-- Fuente tipo Cuarto Azul -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg-dark: #020b18;
+            --bg-mid: #041b34;
+            --accent: #2f7df4;
+            --accent-soft: #7faeff;
+            --card-bg: rgba(5, 15, 32, 0.94);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: #ffffff;
+            --text-soft: rgba(255, 255, 255, 0.8);
+            --pill-bg: rgba(23, 63, 131, 0.9);
+            --danger: #ff5c5c;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at 15% 0, #163d7d 0, transparent 55%),
+                radial-gradient(circle at 85% 100%, #092242 0, transparent 55%),
+                linear-gradient(160deg, var(--bg-dark), var(--bg-mid));
+            padding: 32px 16px;
+        }
+
+        .layout {
+            width: 100%;
+            max-width: 1250px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 880px) {
+            .layout {
+                grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.35fr);
+            }
+        }
+
+        .panel {
+            border-radius: 26px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.7);
+            padding: 22px 22px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Panel arte */
+        .panel-art {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            white-space: nowrap;
+        }
+
+        .logo-img {
+            max-height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .cover-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #071a33;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .cover-frame img {
+            width: 100%;
+            display: block;
+        }
+
+        .art-caption {
+            font-size: 0.78rem;
+            color: var(--text-soft);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .album-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.78rem;
+            color: var(--text-soft);
+        }
+
+        .pill {
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--pill-bg);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* Panel app */
+        .panel-app {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            padding: 4px 11px;
+            border-radius: 999px;
+            background: rgba(23, 63, 131, 0.8);
+            color: var(--text-soft);
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        h1 {
+            margin: 4px 0 2px;
+            font-size: 1.8rem;
+            letter-spacing: 0.06em;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            margin-bottom: 4px;
+        }
+
+        .section {
+            margin-top: 6px;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            margin: 0 0 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-soft);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title span.label {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.72rem;
+        }
+
+        /* Cuenta atrás */
+        .countdown-text {
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            margin-bottom: 10px;
+        }
+
+        .time-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .time-box {
+            background: rgba(11, 33, 70, 0.95);
+            border-radius: 14px;
+            padding: 7px 4px;
+            text-align: center;
+            font-size: 0.75rem;
+        }
+
+        .time-box strong {
+            display: block;
+            font-size: 1.2rem;
+        }
+
+        .small-hint {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 4px;
+            font-size: 0.9rem;
+            max-height: 160px;
+            overflow-y: auto;
+        }
+
+        .checklist li {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 6px;
+        }
+
+        .checklist input[type="checkbox"] {
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .checklist span {
+            flex: 1;
+            word-wrap: break-word;
+        }
+
+        .checklist span.checked {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .delete-btn {
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+
+        .delete-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--danger);
+        }
+
+        .item-form {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: nowrap;
+        }
+
+        .item-form input {
+            flex: 1;
+            min-width: 0;
+            padding: 7px 11px;
+            border-radius: 999px;
+            border: none;
+            font-size: 0.85rem;
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+        }
+
+        .item-form input::placeholder {
+            color: rgba(255, 255, 255, 0.48);
+        }
+
+        .item-form button {
+            border-radius: 999px;
+            border: none;
+            padding: 7px 16px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            color: #fff;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: transform 0.08s ease, box-shadow 0.08s ease;
+        }
+
+        .item-form button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Notas */
+        textarea {
+            width: 100%;
+            height: 110px;
+            border-radius: 16px;
+            padding: 9px 11px;
+            font-size: 0.86rem;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-main);
+            border: none;
+            outline: none;
+            resize: none;
+        }
+
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .footer {
+            margin-top: 4px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.62);
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <!-- Panel izquierdo: arte del álbum -->
+        <aside class="panel panel-art">
+            <div class="logo-row">
+                <div class="logo-text">AITANA · CUARTO AZUL</div>
+                <!-- Reemplaza src con tu logo: -->
+                <img src="Aitana_Cuarto_Azul_Logo.png" alt="Cuarto Azul" class="logo-img" />
+            </div>
+
+            <div class="cover-frame">
+                <!-- Reemplaza src con la portada / imagen que quieras -->
+                <img src="cuarto_azul.jpg" alt="Portada Cuarto Azul" />
+            </div>
+
+        </aside>
+
+        <!-- Panel derecho: app -->
+        <main class="panel panel-app">
+            <div>
+                <div class="badge">
+                    <div class="badge-dot"></div>
+                    Cuarto Azul · Concierto
+                </div>
+                <!-- Puedes poner su nombre aquí -->
+                <!-- Ejemplo: Concierto de Marta -->
+                <h1><span>Cuarto Azul</span> – Preparativos</h1>
+                <p class="subtitle">
+                    Página para organizar todo antes del concierto.
+                </p>
+            </div>
+
+            <!-- Cuenta atrás -->
+            <section class="section">
+                <div class="section-title">
+                    <span class="label">Cuenta atrás</span>
+                </div>
+                <div class="countdown-text" id="countdown-text"></div>
+                <div class="time-boxes">
+                    <div class="time-box">
+                        <strong id="days">0</strong>
+                        días
+                    </div>
+                    <div class="time-box">
+                        <strong id="hours">0</strong>
+                        horas
+                    </div>
+                    <div class="time-box">
+                        <strong id="minutes">0</strong>
+                        min
+                    </div>
+                    <div class="time-box">
+                        <strong id="seconds">0</strong>
+                        seg
+                    </div>
+                </div>
+                <div class="small-hint">
+                    Actualizado en tiempo real hasta el día del concierto.
+                </div>
+            </section>
+
+            <!-- Checklist -->
+            <section class="section">
+                <div class="section-title">
+                    <span class="label">Cosas que quiero llevar</span>
+                </div>
+
+                <ul class="checklist" id="checklist">
+                    <!-- Se rellenará desde JS / localStorage -->
+                </ul>
+
+                <form class="item-form" id="item-form">
+                    <input type="text" id="item-input" placeholder="Añadir: entradas, agua, powerbank..." />
+                    <button type="submit">Añadir</button>
+                </form>
+            </section>
+
+            <!-- Notas -->
+            <section class="section">
+                <div class="section-title">
+                    <span class="label">Notas</span>
+                </div>
+                <textarea id="notes" placeholder="Ideas de outfit, punto de quedada, horarios..."></textarea>
+            </section>
+
+            <footer class="footer">
+                <span>Checklist y notas se guardan en este navegador.</span>
+                <span>Úsala antes y el día del concierto.</span>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // ========= CONFIGURA AQUÍ LA FECHA DEL CONCIERTO =========
+        // Formato: "YYYY-MM-DDTHH:MM:SS"
+        const concertDate = new Date("2026-05-21T21:30:00");
+
+        // Claves de localStorage
+        const CHECKLIST_KEY = "cuartoAzul_concertChecklist_v2";
+        const NOTES_KEY = "cuartoAzul_concertNotes_v2";
+
+        // ========= CUENTA ATRÁS =========
+        function updateCountdown() {
+            const now = new Date();
+            const diff = concertDate - now;
+
+            const countdownText = document.getElementById("countdown-text");
+            const dElem = document.getElementById("days");
+            const hElem = document.getElementById("hours");
+            const mElem = document.getElementById("minutes");
+            const sElem = document.getElementById("seconds");
+
+            if (diff <= 0) {
+                countdownText.textContent = "Ya es el día del concierto.";
+                dElem.textContent = "0";
+                hElem.textContent = "0";
+                mElem.textContent = "0";
+                sElem.textContent = "0";
+                return;
+            }
+
+            const seconds = Math.floor(diff / 1000);
+            const days = Math.floor(seconds / (60 * 60 * 24));
+            const hours = Math.floor((seconds / (60 * 60)) % 24);
+            const minutes = Math.floor((seconds / 60) % 60);
+            const sec = seconds % 60;
+
+            countdownText.textContent = `Faltan ${days} días para el concierto.`;
+            dElem.textContent = days;
+            hElem.textContent = hours;
+            mElem.textContent = minutes;
+            sElem.textContent = sec.toString().padStart(2, "0");
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ========= CHECKLIST + localStorage =========
+        const checklist = document.getElementById("checklist");
+        const itemForm = document.getElementById("item-form");
+        const itemInput = document.getElementById("item-input");
+
+        function getChecklistFromStorage() {
+            const raw = localStorage.getItem(CHECKLIST_KEY);
+            if (!raw) return [];
+            try {
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function saveChecklistToStorage() {
+            const items = [];
+            checklist.querySelectorAll("li").forEach((li) => {
+                const checkbox = li.querySelector('input[type="checkbox"]');
+                const span = li.querySelector("span.item-text");
+                if (!span) return;
+                items.push({
+                    text: span.textContent,
+                    checked: checkbox?.checked || false,
+                });
+            });
+            localStorage.setItem(CHECKLIST_KEY, JSON.stringify(items));
+        }
+
+        function createChecklistItem(text, checked = false) {
+            const li = document.createElement("li");
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = checked;
+
+            const span = document.createElement("span");
+            span.textContent = text;
+            span.classList.add("item-text");
+            if (checked) span.classList.add("checked");
+
+            const delBtn = document.createElement("button");
+            delBtn.type = "button";
+            delBtn.className = "delete-btn";
+            delBtn.textContent = "×";
+            delBtn.setAttribute("aria-label", "Eliminar");
+
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            li.appendChild(delBtn);
+
+            return li;
+        }
+
+        function renderChecklist(items) {
+            checklist.innerHTML = "";
+            items.forEach((item) => {
+                const li = createChecklistItem(item.text, item.checked);
+                checklist.appendChild(li);
+            });
+        }
+
+        // Cargar al inicio
+        renderChecklist(getChecklistFromStorage());
+
+        // Marcar / desmarcar + eliminar
+        checklist.addEventListener("click", (e) => {
+            const target = e.target;
+
+            // Eliminar
+            if (target.classList.contains("delete-btn")) {
+                const li = target.closest("li");
+                if (li) {
+                    li.remove();
+                    saveChecklistToStorage();
+                }
+                return;
+            }
+
+            // Checkbox
+            if (target.tagName === "INPUT" && target.type === "checkbox") {
+                const span = target.nextElementSibling;
+                if (span) {
+                    if (target.checked) {
+                        span.classList.add("checked");
+                    } else {
+                        span.classList.remove("checked");
+                    }
+                }
+                saveChecklistToStorage();
+            }
+        });
+
+        // Añadir nuevos elementos
+        itemForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const text = itemInput.value.trim();
+            if (!text) return;
+
+            const li = createChecklistItem(text, false);
+            checklist.appendChild(li);
+
+            itemInput.value = "";
+            itemInput.focus();
+
+            saveChecklistToStorage();
+        });
+
+        // ========= NOTAS + localStorage =========
+        const notes = document.getElementById("notes");
+
+        function loadNotes() {
+            const stored = localStorage.getItem(NOTES_KEY);
+            if (stored !== null) {
+                notes.value = stored;
+            }
+        }
+
+        function saveNotes() {
+            localStorage.setItem(NOTES_KEY, notes.value);
+        }
+
+        loadNotes();
+        notes.addEventListener("input", saveNotes);
+    </script>
+</body>
+
+</html>
