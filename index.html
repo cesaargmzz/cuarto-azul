@@ -56,6 +56,26 @@
             }
         }
 
+        /* Vista móvil: paneles uno debajo del otro y más grandes */
+        @media (max-width: 879px) {
+            .panel {
+                padding: 28px 22px !important;
+                border-radius: 22px;
+            }
+
+            .panel-art img {
+                width: 100%;
+                height: auto;
+            }
+
+            .layout {
+                grid-template-columns: 1fr !important;
+                max-width: 500px;
+                /* tamaño ideal en móvil */
+                margin: 0 auto;
+            }
+        }
+
         .panel {
             border-radius: 26px;
             background: var(--card-bg);
